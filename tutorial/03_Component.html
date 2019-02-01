@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Component</title>
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+   <div id="app">
+     <h3>첫 번째 인스턴스</h3>
+     <global-component></global-component>
+     <local-component></local-component>
+   </div>
+
+   <script>
+     // 전역 컴포넌트 등록
+     Vue.component('global-component', {
+       template: '<div>전역 컴포넌트~~~div>'
+     });
+     // 지역 컴포넌트 내용
+     var cmp = {
+       template: '<div>지역 컴포넌트~~~div>'
+     };
+     new Vue({
+       el: '#app',
+       // 지역 컴포넌트 등록
+       components: {
+         'local-component': cmp
+       }
+     });
+   </script>
+
+    <!--
+    기본개념 2
+        컴포넌트란 ? :
+          조합하여 화면을 구성할 수 있는 블록. 컴포넌트를 활용하면 화면을 빠르게 구조화 하여 일괄적인 패턴으로 개발 할 수 있다.
+          화면영역의 영역을 컴포넌트로 쪼개서 재활용 할 수 있는 형태로 관리하면 편해지고 가독성이 좋아진다.
+          웹 화면을 구성할 때 네비게이션 바, 테이블, 리스트, 인풋 박스 등 화면 구성 요소들을 잘개 쪼개어 컴포넌트로 관리하면 좋다.
+          컴포넌트 간의 관계는 Tree(트리) 자료구조와 모양이 유사하다.
+      기본개념 3
+        트리란 ? :
+          컴퓨터 자료구조 중 하나, 노드끼리의 연결이 부모 - 자식의 구조를 따르고, 전체적인 모양이 나무와 비슷해서 트리라고 부름.
+          뷰에서도 컴포넌트를 이해할 때 필요한 개념이고, 각종 데이터베이스에 활용된다.
+   -->
+
+  </body>
+</html>

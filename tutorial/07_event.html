@@ -1,0 +1,51 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>event</title>
+    </head>
+
+
+    <body>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script>
+
+      <!-- show-log(하위 컴포넌트의 이벤트명), printText(상위 컴포넌트의 메소드명) -->
+      <div id="app">
+        <child-component v-on:show-log="printText"></child-component>
+      </div>
+
+      <script type="text/javascript">
+
+        Vue.component('child-component', {
+          template : '<button v-on:click="showLog">버튼</button>',
+          methods : {
+            showLog : function() {
+              this.$emit('show-log');
+            }
+          }
+        });
+
+        var app = new Vue({
+          el : '#app',
+          data : {
+            message : 'hello vue!'
+          },
+          methods : {
+            printText : function() {
+              console.log("received an event");
+            }
+          }
+        });
+      </script>
+
+      <!--
+        처리 과정
+        버튼을 클릭하면 showLog() 메소드 실행
+        showLog() 메소드 안에서 this.$emit('show-log')가 실행되면서 show-log이벤트 발생하고,
+        child-component에 정의한 v-on:show-log에 전달되고 이 이벤트가 호출됬을때 실행되는 printText메소드로 이동된다~~
+        
+
+     -->
+
+    </body>
+  </html>

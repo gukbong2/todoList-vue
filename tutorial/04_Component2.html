@@ -1,0 +1,55 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>LocalComponent & GlobalComponent</title>
+    </head>
+
+
+    <body>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script>
+
+      <div id="app">
+        <h3>첫 번째 인스턴스 영역</h3>
+        <global-component></global-component>
+        <local-component></local-component>
+      </div>
+
+      <hr>
+
+      <div id="app2">
+        <h3>두 번째 인스턴스 영역</h3>
+        <global-component></global-component>
+        <local-component></local-component>
+      </div>
+
+
+      <script type="text/javascript">
+        Vue.component('global-component', {
+          template : '<div>전역 컴포넌트~~~</div>'
+        });
+
+        var cmp = {
+          template: '<div>지역 컴포넌트~~~</div>'
+        };
+        new Vue({
+          el: '#app',
+          // 지역 컴포넌트 등록
+          components: {
+            'local-component': cmp
+          }
+        });
+
+        new Vue({
+          el : '#app2'
+        });
+
+      //개발자도구에서 오류메세지가 나는 이유 :
+      //컴포넌트를 #app에 등록하는 지역 컴포넌트를 등록되어있는데, 유효범위를 벗어나서 해당 컴포넌트를 제대로 등록했는지
+      //물어보는 오류~~
+
+
+      </script>
+
+    </body>
+  </html>

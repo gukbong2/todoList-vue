@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Instance_LifeCycle</title>
+  </head>
+  <body>
+
+    <div id="app">
+      {{ message }}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      new Vue({
+          el : '#app',
+          data : {message : 'hello Vue.js!'},
+          beforeCreate : function() { //create전 단계
+            console.log("beforeCreate");
+          },
+          created : function() { //인스턴스가 화면에 부착되기 전 단계
+            console.log("created");
+          },
+          mounted : function() { //지정한 화면 요소에 인스턴스가 부착되고 나면 호출되는 단계!
+            console.log("mounted");
+            this.message = 'Hello vue.js!'
+          },
+          updated : function() { // 데이터가 변경되고 나서 실행되는 단계!
+            console.log("updated");
+          }
+      });
+    </script>
+
+    <!-- updated는 LifeCycle or View Instance에서 데이터 변경이 일어나 화면이 다시 그려졌을 때 호출되는 로직 -->
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>Named View</title>
+    </head>
+    <body>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script>
+      <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js" charset="utf-8"></script>
+
+      <!-- 라우터 영역 정의~~ name이 없는 경우엔 default -->
+      <div id="app">
+        <router-view name="header"></router-view>
+        <router-view></router-view>
+        <router-view name="footer"></router-view>
+
+        <p>
+          <router-link to="/">Main</router-link>
+          <router-link to='/login'>Login</router-link>
+        </p>
+      </div>
+
+
+      <script type="text/javascript">
+        var Header = { template : ' <div>이거슨 머리~~</div>'}
+        var Body = {template : '<div>이것은 바디~~</div>'}
+        var Footer = { template : '<div>저거슨 꼬리말~~</div>'}
+
+        var loginHeader = { template : ' <div>이거슨 로그인머리~~</div>'}
+        var loginBody = {template : '<div>이것은 로그인바디~~</div>'}
+        var loginFooter = { template : '<div>저거슨 로그인꼬리말~~</div>'}
+
+        var router = new VueRouter({
+          routes : [
+            {
+              path : '/',
+              components : {
+                default : Body,
+                header : Header,
+                footer : Footer
+              }
+            },
+            {
+              path : '/login',
+              components : {
+                header : loginHeader,
+                default : loginBody,
+                footer : loginFooter
+              }
+            }
+          ]
+        });
+
+        var app = new Vue({
+          router
+        }).$mount('#app');
+      </script>
+
+    <!-- Named View 코딩 순서
+      1.router-view를 3개를 추가해서 header, body, footer를 만든다.
+      name은 아래 컴포넌트와 매칭하기위해서 적은거고, 안적는다면 default이다~~
+
+      2.담을 객체 Header, Body, Footer 생성~
+
+      3.앞의 네스티드 라우터 예제코드와 다르게 new VueRouter를 생성하고, 이 안에 routes를 정의한다~
+      path는 네임드뷰가 실행될 URL이고, 기본 URL값인 '/'을 지정했다.
+
+      4.components는 컴포넌트에 객체를 담아서 쏘즈아
+
+      5.라우터를 담은 인스턴스 생성~~ 이것또한 .$mount(대상);
+
+
+
+   -->
+
+    </body>
+  </html>

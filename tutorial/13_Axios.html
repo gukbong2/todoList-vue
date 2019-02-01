@@ -1,0 +1,46 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>axios로 프레임워크 목록 가져오기~~</title>
+    </head>
+    <body>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script> <!-- Vue -->
+      <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js" charset="utf-8"></script> <!-- Vue Router-->
+      <script src="https://unpkg.com/axios/dist/axios.min.js" charset="utf-8"></script> <!-- axios -->
+
+      <div id="app">
+          <button v-on:click="getData">프레임워크 목록 가져오기</button>
+      </div>
+
+      <script type="text/javascript">
+        new Vue({
+          el : "#app",  
+          methods : {
+            getData : function() {
+              axios.get("https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json")
+              .then(function(response) {
+                console.log(response);
+              });
+            }
+          }
+
+        });
+
+
+      </script>
+
+        <!--
+         axios API형식
+         axios.get('URL 주소').then().catch() : 해당 주소에 GET요청. 정상적으로 받아오면 then() 로직실행, 비 정상 시 catch() 로직실행~~
+         axios.post('URL 주소').then().catch() : 해당 주소에 POST요청. 정상적으로 받아오면 then() 로직실행, 비 정상 시 catch() 로직실행~~
+         axios({ 옵션 속성 }) : http 요청에 대한 자세한 설정을 직접 정의 하여서 보낼 수 있음. ajax처럼 요청 방식, 데이터 유형, 기타 등등~~
+
+        ajax와 비슷한 기능이라고 생각된다!
+
+
+
+      -->
+
+    </body>
+  </html>

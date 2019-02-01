@@ -1,0 +1,59 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>이벤트처리~~</title>
+    </head>
+    <body>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script> <!-- Vue -->
+      <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js" charset="utf-8"></script> <!-- Vue Router-->
+      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script> <!-- Vue Resource -->
+      <script src="https://unpkg.com/axios/dist/axios.min.js" charset="utf-8"></script>  <!-- axios -->
+
+      <div id="app">
+        <button v-on:click="clickBtn">클릭</button>
+      </div>
+      <hr>
+
+      <div id="app2">
+        <button v-on:click="clickBtn2(10)">클릭2</button>
+      </div>
+      <hr>
+
+      <div id="app3">
+        <button v-on:click="clickBtn3">클릭3</button>
+      </div>
+
+      <script type="text/javascript">
+       new Vue({
+         el: '#app',
+         methods: {
+           clickBtn: function() {
+             alert('clicked');
+           }
+         }
+       });
+
+       new Vue({
+         el: '#app2',
+         methods: {
+           clickBtn2: function(num) {
+             alert('clicked 넘어온 인자값은 누굽니까아아아악~~~~~~~~~~~~~~~~~~~~~~~~~ [ ' + num + "]");
+             console.log(num);
+           }
+         }
+       });
+
+       new Vue({
+      el: '#app3',
+      methods: {
+        clickBtn3: function(event) {
+          console.log(event);
+        }
+      }
+    });
+
+     </script>
+
+    </body>
+  </html>

@@ -1,0 +1,64 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>Event Bus</title>
+    </head>
+
+
+    <body>
+     <div id="app">
+       <child-component></child-component>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+     <script>
+       var eventBus = new Vue();
+       Vue.component('child-component', {
+         template: '<div>하위 컴포넌트 영역입니다.<button v-on:click="showLog">show</button></div>',
+         methods: {
+           showLog: function() {
+             eventBus.$emit('triggerEventBus', 100);
+           }
+         }
+       });
+       var app = new Vue({
+         el: '#app',
+         created: function() {
+           eventBus.$on('triggerEventBus', function(value){
+             console.log("이벤트를 전달 받음. 전달 받은 값 : ", value);
+           });
+         }
+       });
+     </script>
+
+    <!--
+      이벤트 버스 란? :
+        3개의 컴포넌트가 있다고 가정했을 때, 최하위 컴포넌트에서 최상위 컴포넌트로 전달하려면 중간 컴포넌트도 거쳐서 가야하는
+        쓰잘데기없는 짓을 해야한다. 이렇게 컴포넌트가 많아지면 많아질수록 그 문제는 점점 더 번거로워진다.
+        이벤트 버스를 활용하면 중간 컴포넌트를 거치지않고, 최하위컴포넌트에서 최상위컴포넌트까지도 바로 데이터를 전달 할 수 있다!
+
+        보내는 컴포넌트에서는 .$emit() !
+        받는 컴포넌트에서는 .$on() 를 구현해야한다~~
+
+
+          이벤트 버스로 활용할 새 인스턴스를 1개 생성 후 eventBus변수 참조하면
+          eventBus <-변수로 새 인스턴스의 속성과 메솓스에 접근이 가능하다!
+
+          하위 컴포넌트에 template 속성과 methods 속성을 정의 한 후,
+          showLog 메소드 안에 eventBus.$emit('triggerEventBus', 100); 를 넣어서
+          이벤트를 발생시킨다~~ 그리고 created 라이프 사이클에 eventBus.$on으로 받을 이벤트명과 파라미터를 적는다.
+
+          장점 : 이벤트 버스를 활용하면 props속성을 이용하지 않고도 원하는 컴포넌트 간에 직접적으로 데이터를 전달 할 수 있어서 편리하지만,
+
+          단점 : 컴포넌트가 많아지면 어디서 어디로 보냈는지 헷갈리고, 관리가 어렵다! 이 부분을 해결하려면 Vuex라는 관리도구가 필요하다는데
+          나중에 배우도록하즈아~
+
+
+          ps : 점점 주석이 길어진다.. 어제와 다르게 오늘따라 한번에 봐도 이해가안된다...넘모슬프다..
+
+
+   -->
+
+   </body>
+  </html>

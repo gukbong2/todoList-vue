@@ -1,0 +1,55 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>Hello vue.js!</title>
+    </head>
+
+
+    <body>
+      <div class="app" id="app">
+        {{ message }}
+        <strong>{{ message2 }}</strong>
+        <br>
+
+      </div>
+
+      <div id="app2">
+        {{ message3}}
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script>
+      <script type="text/javascript">
+
+        new Vue({
+            el : '#app',
+            data : { message : 'hello Vue.js!', message2 : 'vue.js start!' }
+        });
+
+      </script>
+      <script type="text/javascript">
+
+      new Vue({
+        el : "#app2",
+        data : {
+          message3 : "Vue.js Start!!"
+        },
+        template : '<p>{{message3}}</p>'
+      })
+      </script>
+
+      <hr>
+
+      <!-- 기본개념 1
+        생성자란? :
+          생성자는 객체를 새로 생성할 때 자주 사용하는 옵션과 기능들을 미리 특정 객체에 저장하고,
+          새로 객체를 생성 할 때 기존에 포함된 기능과 더불어 기존 기능을 쉽게 확장하기 위함!
+          일반적으로 객체 지향 프로그래밍에서 사용하는 객체 정의 방식으로 미리 정의된 속성과 메소드를 재활용하는데 용의함
+      -->
+
+      <!-- ps 첫 시작의 느낌은 jQuery의 Ajax형식과 비슷하다!
+      jQuery와 마찬가지로 링크 넣어야 작동함
+      -->
+      <!-- Atom 깃허브 연동할 때 처음에 헤맸다. -->
+    </body>
+  </html>

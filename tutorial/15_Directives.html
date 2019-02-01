@@ -1,0 +1,56 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>Directives</title>
+    </head>
+    <body>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" charset="utf-8"></script> <!-- Vue -->
+      <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js" charset="utf-8"></script> <!-- Vue Router-->
+      <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script> <!-- Vue Resource -->
+      <script src="https://unpkg.com/axios/dist/axios.min.js" charset="utf-8"></script>  <!-- axios -->
+  
+      <div id="app">
+        <a v-if="flag">flag</a>  <!-- flag가 true이니까 나온다!!-->
+
+        <ul>
+         <li v-for="gukbong in systems">{{ gukbong }}</li> <!-- 반복문~~-->
+       </ul>
+        <p v-show="flag">flag가 참이라면 나와주세요..!</p> <!-- flag가 참이라면 나와주세요~~~-->
+        <h5 v-bind:id="uid">방국봉</h5> <!-- HTML태그의 ID속성을 뷰 데이터에 선언한 uid값과 연결하여 화면에 표시~~-->
+        <button v-on:click="Alert">경고 버튼</button> <!-- 바닐라스크립트의 onclick이라고 생각하면됨~~-->
+      </div>
+
+      <script type="text/javascript">
+      new Vue({
+     el: '#app',
+     data: {
+       flag: true,
+       systems: ['android', 'ios', 'window', '방국봉', '박비듬'],
+       uid: 10
+     },
+     methods: {
+       Alert: function() {
+         return alert('얼럿이드아~~~');
+       }
+
+     }
+   });
+ </script>
+
+      <!-- 주요 디렉티브 정리~~~
+
+        v-if : 지정한 뷰 데이터 값의 참/ 거짓 여부에 따라 해당 HTML태그를 화면에 표시하거나 하지 않음~~
+        v-for : 지정한 뷰 데이터의 개수만큼 해당 HTML 태그를 반복 출력~~
+        v-show : v-if와 유사하게 데이터의 진위여부에 따라 표시하거나 하지않음 ~~ v-if와 다른점은
+        v-if는 해당 태그를 완전히 삭제하지만, v-show는 display:none 처리~~
+        v-bind : HTML태그의 기본 속성과 뷰 데이터 속성을 연결합니다~~
+        v-on : 화면 요소의 이벤트를 감지하여 처리할 때 사용합니다. 예를 들어, v-on:click은 해당 태그의 클릭 이벤트를 감지하여 특정 메서드를 실행 가능~~
+        v-model : 폼(form)에서 주로 사용되는 속성이며, 폼에 입력한 값을 뷰 인스턴스의 데이터와 즉시 동기화 처리함~~
+        화면에 입력된 값을 저장하여 서버에 보내거나 추가 로직을 수행 할 수 있고, <input> <sekect> <textarea> 태그에서도 사용가능!!
+
+      -->
+
+
+    </body>
+  </html>
