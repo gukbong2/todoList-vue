@@ -20,7 +20,7 @@
 
           if(this.newTodoItem !== "") {
             var value = this.newTodoItem && this.newTodoItem.trim();
-              localStorage.setItem(value, value);
+              this.$emit('addTodo', value);
               this.clearInput();
           }
         },
@@ -31,7 +31,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   input:focus {
     outline : none;
     /* 인풋 박스의 선 스타일 지정 */
