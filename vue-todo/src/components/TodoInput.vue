@@ -7,7 +7,7 @@
 
     <modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">경고!</h3>
-      <span slot="footer" @click="showModal = false">할 일을 입력하세요!
+      <span slot="footer" @click="showModal = false">할 일을 입력하세요! 
         <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
       </span>
     </modal>
